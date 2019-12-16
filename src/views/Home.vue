@@ -16,14 +16,22 @@ import gql from 'graphql-tag';
 
 export default {
   name: 'home',
-  apollo: {
-    all: gql`query {
-      all: getIssues {
-        issueId
-        question
-        summary
-      }
-    }`
+  data () {
+    return {
+      all: ""
+    }
+  },
+  mounted () {
+    // changed to this so that hopefully when a vote is submitted and we redirect to Home, then the data is re-pulled and you can see new responded-to status on each
+    this.$apollo.query({
+      query: gql`query {
+        all: getIssues {
+          issueId
+          question
+          summary
+        }
+      }`
+    }).then( res => this.all = res.data.all )
   }
 }
 </script>
