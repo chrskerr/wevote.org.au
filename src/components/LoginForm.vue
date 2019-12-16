@@ -2,17 +2,27 @@
     
     <div id="login-form">
         <form v-on:submit.prevent='loginSubmit'>
-            <label for="number">
+            <label for="licence">
                 Licence / ID Card number
-                <input type="number" />
+                <input type="number" v-model="formData.licence"/>
             </label>
-            <label for="expiry">
-                Expiry
-                <input type="date" />
+            <label for="state">
+                State
+                <select v-model='formData.state'>
+                    <option value="">Please select</option>
+                    <option value="nsw">NSW</option>
+                    <option value="qld">Queensland</option>
+                    <option value="vic">Victoria</option>
+                    <option value="tas">Tasmania</option>
+                    <option value="sa">South Australia</option>
+                    <option value="nt">Northern Territory</option>
+                    <option value="act">ACT</option>
+                    <option value="wa">Western Australia</option>
+                </select>
             </label>
             <label for="surname">
                 Surname
-                <input type="text" />
+                <input type="text" v-model='formData.surname'/>
             </label>
             <button type='submit'>Log In</button>
         </form>
@@ -23,16 +33,18 @@
 <script>
 export default {
     name: 'login-form',
-    methods: {
-        loginSubmit: function(e) {
-
-            const output = {
-                number: e.target[0].value,
-                expiry: e.target[1].value,
-                surname: e.target[2].value,
+    data () {
+        return {
+            formData: {
+                licence: '',
+                state: '',
+                surname: ''
             }
-
-            this.$emit('togglePage', output);
+        }
+    },
+    methods: {
+        loginSubmit: function() {
+            this.$emit('loginSubmit', this.formData);
         }
     }
 }

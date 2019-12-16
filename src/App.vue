@@ -4,7 +4,7 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-      <login @updateLogin='updateLogin' :loggedIn='loggedIn' />
+      <login />
     </div>
 
     <router-view />
@@ -17,19 +17,6 @@ import Login from './components/Login.vue';
 
 export default {
   name: 'app',
-  data () {
-    return {
-      loggedIn: false,
-    }
-  },
-  methods: {
-    updateLogin: function(data) {
-      this.loggedIn = data.loggedIn;
-      if (data.loggedIn) {
-        // plus save some info for filtering the graphQL in Home
-      }
-    }
-  },
   components: {
     'login': Login
   }

@@ -6,7 +6,7 @@
       <li v-for='issue in all' v-bind:key='issue.issueId'><router-link :to="{ name: 'issue', params: { issue: issue.issueId }}">{{issue.issueId}} - {{issue.question}} -- {{issue.summary}}</router-link></li>
     </ul>
 
-    <p v-if='$attrs.loggedIn'>Yes</p>
+    <p>{{ $store.state.identifier }}</p>
 
   </div>
 </template>

@@ -2,59 +2,29 @@
     
     <div id="login">
         
-        <div v-if='loggedIn'>
-            <span>{{formData.surname}}</span>
+        <div v-if='user.surname'>
+            <span>{{user.surname}}</span>
             <button v-on:click='logOut'>Log Out</button>
         </div>
 
         <div v-else> 
-            <button v-on:click='toggleLoginScreen'>Log In</button>
-        </div>
+            <button v-on:click='toggleModal'>Log In</button>
+        
+            <div v-if='modalShown' id='loginModal'>
+                
+                <button v-on:click='toggleModal'>Close</button>
+                
+                <login-form v-if="inputFormShown" @loginSubmit='loginSubmit' />
 
-        <div v-if='loginShown' id='loginModal'>
-            
-            <button v-on:click='toggleLoginScreen'>Close</button>
-            
-            <div v-if="form" >
-                <form v-on:submit.prevent='loginSubmit'>
-                    <label for="number">
-                        Licence / ID Card number
-                        <input type="number" />
-                    </label>
-                    <label for="expiry">
-                        Expiry
-                        <input type="date" />
-                    </label>
-                    <label for="surname">
-                        Surname
-                        <input type="text" />
-                    </label>
-                    <label for="state">
-                        State
-                        <select>
-                            <option value="">Please select</option>
-                            <option value="nsw">NSW</option>
-                            <option value="qld">Queensland</option>
-                            <option value="vic">Victoria</option>
-                            <option value="tas">Tasmania</option>
-                            <option value="sa">South Australia</option>
-                            <option value="nt">Northern Territory</option>
-                            <option value="act">ACT</option>
-                            <option value="wa">Western Australia</option>
-                        </select>
-                    </label>
-                    <button type='submit'>Log In</button>
-                </form>
+                <div v-else>
+                    <p>{{formData.surname}} - {{formData.licence}} - {{formData.state}}</p>
+
+                    <p>Is this information correct?</p>
+                    <button v-on:click='loginConfirm' name='yes'>Yes</button>
+                    <button v-on:click='loginConfirm' name='no'>No</button>
+                </div>
+
             </div>
-
-            <div v-else>
-                <p>{{formData.surname}} - {{formData.number}}</p>
-
-                <p>Is this information correct?</p>
-                <button v-on:click='loginConfirm' name='yes'>Yes</button>
-                <button v-on:click='loginConfirm' name='no'>No</button>
-            </div>
-
         </div>
 
     </div>
@@ -62,51 +32,66 @@
 </template>
 
 <script>
-// import LoginForm from '../components/LoginForm.vue'
-// import LoginConfirm from '../components/LoginConfirm.vue'
+import gql from 'graphql-tag';
+import LoginForm from './LoginForm.vue'
 
 export default {
     name: 'login',
     data () {
         return {
-            form: true,
-            formData: {},
-            electorate: {},
-            loginShown: false        }
-    },
-    props: {
-        loggedIn: {
-            type: Boolean
+            inputFormShown: true,
+            modalShown: false,
+            formData: ''
         }
     },
     methods: {
-        toggleLoginScreen: function() {
-            this.loginShown = !this.loginShown;
+        toggleModal: function() {
+            this.modalShown = !this.modalShown;
         },
-        loginSubmit: function(e) {
-            this.formData = {
-                number: e.target[0].value,
-                expiry: e.target[1].value,
-                state: e.target[2].value
-            },
-            this.form = false;
+        loginSubmit: function(data) {
+            this.formData = data;
+            this.inputFormShown = false;
         },
-        loginConfirm: function(e) {
+        loginConfirm: function (e) {
             if (e.target.name === 'no') {
-                [this.form, this.formData, this.electorate] = [true, {}, {}];
+                [this.inputFormShown, this.formData] = [true, {}];
+                // reset the form
+                // TO-DO: retain state in the form
+
             } else {
-                this.loginShown = false;
-                this.$emit('updateLogin', {
-                    loggedIn: true,
-                })
+                this.$apollo.query({
+                    query: gql`
+                        query Identifiers($licence: String!, $state: String!, $surname: String!) {
+                            identifier: getIdentifier(licence: $licence, state: $state, surname: $surname) {
+                                identifier
+                            }
+                        }
+                    `,
+                    variables: {
+                        licence: this.formData.licence,
+                        state: this.formData.state,
+                        surname: this.formData.surname,
+                    }  
+                }).then(function(res) {
+                    this.$store.commit('updateUser', {
+                        identifier: res.data.identifier.identifier,
+                        surname: this.formData.surname
+                    });
+                    [this.modalShown, this.inputFormShown] = [false, true];
+                }.bind(this));
             }
         },
-        logOut: function() {
-            [this.form, this.formData, this.electorate] = [true, {}, {}];
-            this.$emit('updateLogin', {
-                loggedIn: false,
-            })
+        logOut: function() {            
+            this.$store.commit('updateUser', "")
         }
+    },
+    computed: {
+        user () {
+            return this.$store.state.user
+        }
+    },
+    components: {
+        'login-form': LoginForm
     }
 }
 </script>
