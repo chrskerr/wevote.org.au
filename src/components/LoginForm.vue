@@ -32,7 +32,7 @@ export default {
                 surname: e.target[2].value,
             }
 
-            this.$emit('loginEnter', output);
+            this.$emit('togglePage', output);
         }
     }
 }

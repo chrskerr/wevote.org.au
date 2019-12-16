@@ -1,25 +1,27 @@
 <template>
   <div class="home">
-    <p>Hello World</p>
     <a href="https://check.aec.gov.au">Check your electorate</a>
 
     <ul>
-      <li v-for='vote in all' v-bind:key='vote.vote'><router-link :to="{ name: 'vote', params: { vote: vote.prop }}">{{vote.prop}} - {{vote.description}}</router-link></li>
+      <li v-for='issue in all' v-bind:key='issue.issueId'><router-link :to="{ name: 'issue', params: { issue: issue.issueId }}">{{issue.issueId}} - {{issue.question}} -- {{issue.summary}}</router-link></li>
     </ul>
+
+    <p v-if='$attrs.loggedIn'>Yes</p>
 
   </div>
 </template>
 
 <script>
-import gql from 'graphql-tag'
+import gql from 'graphql-tag';
 
 export default {
   name: 'home',
   apollo: {
     all: gql`query {
-      all: getProps {
-        prop
-        description
+      all: getIssues {
+        issueId
+        question
+        summary
       }
     }`
   }
