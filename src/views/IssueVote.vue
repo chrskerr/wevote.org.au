@@ -18,6 +18,7 @@
         <div v-else>
             <p>Please reconfirm your details before voting</p>
             <login-form @loginSubmit='loginSubmit' />
+            <p v-if='err'>{{err}}</p>
         </div>
 
     </div>
@@ -33,7 +34,8 @@ export default {
         return {
             issue: '',
             token: '',
-            response: ''
+            response: '',
+            err: ''
         }
     },
     methods: {
@@ -41,8 +43,10 @@ export default {
             this.$apollo.query({
                 query: gql` 
                     query Token($issueId: String!, $licence: String!, $state: String!, $surname: String!) {
-                            token: getToken(issueId: $issueId, licence: $licence, state: $state, surname: $surname) {
+                            getToken(issueId: $issueId, licence: $licence, state: $state, surname: $surname) {
                                 token
+                                identifier
+                                err
                             }
                         }   
                 `,
@@ -52,7 +56,14 @@ export default {
                     licence: data.licence,
                     state: data.state
                 }
-            }).then( res => this.token = res.data.token.token )
+            }).then( res => {
+                this.token = res.data.getToken.token;
+                this.err = res.data.getToken.err;
+                this.$store.commit('updateUser', {
+                        identifier: res.data.getToken.identifier,
+                        surname: data.surname
+                    });
+                })
         },
         chooseVote: function(e) {
             this.response = e.target.name;
@@ -61,42 +72,51 @@ export default {
             if ( e.target.name === 'change' ) {
                 this.response = '';
             } else if ( e.target.name === 'confirm' ) {
+                console.log({
+                        token: this.token,
+                        response: this.response,
+                        issueId: this.$route.params.issue,
+                        identifier: this.$store.state.user.identifier
+                    })
                 this.$apollo.query({
                     query: gql` 
-                        query giveToken($token: String!, $response: String!) {
-                            giveToken(token: $token, response: $response) {
+                        query giveToken($issueId: String, $token: String!, $response: String!, $identifier: String!) {
+                            giveToken(token: $token, response: $response, identifier: $identifier, issueId: $issueId) {
                                 message
                             }
                         }   
                     `,
                     variables: {
                         token: this.token,
-                        response: this.response
+                        response: this.response,
+                        issueId: this.$route.params.issue,
+                        identifier: this.$store.state.user.identifier
                     }
-                }).then( res => {
-                    console.log(res.data.giveToken.message)
+                }).then(  () => {
+                    
+                    this.$router.push('/')
 
                     // TODO: return to Home and re-pull all data
                 })
             }
         }
     },
-    mounted() {
-        this.$apollo.query({
-        query: gql`
-            query get($issue: String!) {
-                issue: getIssue(issueId: $issueId) {
-                    question
-                }
-            }
-        `,
-        variables: {
-            issueId: this.$route.params.issue
-        }
-        }).then( res => this.issue = res.data.issue )
-    },
     components: {
         'login-form': LoginForm
+    },
+    mounted () {
+        this.$apollo.query({
+            query: gql`
+                query get($issueId: String!) {
+                    getIssue(issueId: $issueId) {
+                        question
+                    }
+                }
+            `,
+            variables: {
+                issueId: this.$route.params.issue
+            }
+        }).then( res => this.issue = res.data.getIssue )
     }
 }
 </script>

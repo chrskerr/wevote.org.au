@@ -30,7 +30,7 @@ export default {
       issue: ''
     }
   },
-  mounted() {
+  mounted () {
     this.$apollo.query({
       query: gql`
         query get($issue: String!) {
