@@ -1,23 +1,41 @@
 <template>
-<div class="issue">
-		
-	<h3>{{ issue.question }}</h3>
-	<p> {{ issue.description }} </p>
-
-	<router-link :to="{name: 'issue-vote', params: {issue: issue.issueId}}">Vote!</router-link>
-
-	<div class='case-box'>
-		<div class='case-column'>
-			<h3>Case for:</h3>
-			<p>{{ issue.caseFor }}</p>
-		</div>
-		<div class='case-column'>
-			<h3>Case against:</h3>
-			<p>{{ issue.caseAgainst }}</p>
+	<div class="issue">
+			
+		<div class="section">
+			<div class="tile is-ancestor">
+				<div class="tile is-vertical">				
+					<div class="tile is-parent">
+						<div class='tile is-child notification is-info'>
+							<h3 class='title'>{{ issue.question }}</h3>
+							<p> {{ issue.description }} </p>
+							<div class="level">
+								<div class="level-item">
+									<router-link class="button is-large" :to="{name: 'issue-vote', params: {issue: issue.issueId}}">Vote!</router-link>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tile">
+						<div class="tile is-parent">
+							<div class="tile is-child notification is-warning">
+								<p class='subtitle'>Case for:</p>
+								<p>{{ issue.caseFor }}</p>
+							</div>
+						</div>
+						<div class="tile is-parent">
+							<div class="tile is-child notification is-warning">
+								<p class='subtitle'>Case against:</p>
+								<p>{{ issue.caseAgainst }}</p>
+							</div>
+						</div>	
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
-</div>
+
+
 </template>
 
 <script>
@@ -53,12 +71,5 @@ export default {
 </script>
 
 <style scoped>
-.case-box {
-  display: flex;
-  width: 100vw;
-}
 
-.case-column {
-  flex: auto;
-}
 </style>

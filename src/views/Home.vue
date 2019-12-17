@@ -1,7 +1,7 @@
 <template>
 	<div class="home container">
 		
-		<div class="hero is-info is-bold">
+		<div class="hero is-success">
 			<div class="hero-body">
 				<div class="container">
 					<h2 class='title'>Title of Referendums app</h2>
@@ -10,10 +10,27 @@
 			</div>
 		</div>
 
-		<ul>
-			<li v-for='issue in all' v-bind:key='issue.issueId'><router-link :to="{ name: 'issue', params: { issue: issue.issueId }}">{{issue.issueId}} - {{issue.question}} -- {{issue.summary}}</router-link></li>
-		</ul>
-
+		<div class="section">
+			<div class='tile is-ancestor'>
+				<div class="tile is-vertical is-parent is-12">
+					<div class="tile is-child notification is-light is-bold" v-for='issue in all' v-bind:key='issue.issueId'>
+						<div class="level">
+							<div class="level-left">
+								<div class="container">
+									<p class='subtitle'>{{issue.question}}</p>
+									<p>{{issue.summary}}</p>
+								</div>
+							</div>
+							<div class="level-right">
+								<div class="level-item">
+									<router-link :to="{ name: 'issue', params: { issue: issue.issueId }}">Find out more</router-link>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
 	</div>
 </template>
 

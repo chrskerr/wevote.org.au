@@ -1,24 +1,32 @@
 <template>
     <div id="issue-vote">
 
-        <h2>{{issue.question}}</h2>
+        <div class="section">
+            <p class='title'>{{issue.question}}</p>
 
-        <div v-if='response'>
-            <p>Please confirm a vote of: <em>{{response}}</em></p>
-            <button v-on:click='confirmVote' name='confirm'>Confirm</button>
-            <button v-on:click='confirmVote' name='change'>Change</button>
-        </div>
+            <div v-if='response'>
+                <p>Please confirm a vote of: <em>{{response}}</em></p>
+                <b-button v-on:click='confirmVote' name='confirm'>Confirm</b-button>
+                <b-button v-on:click='confirmVote' name='change'>Change</b-button>
+            </div>
 
-        <div v-else-if='token' id='chooser'>
-            <button v-on:click='chooseVote' name='for'>For</button>
-            <button v-on:click='chooseVote' name='withheld'>Withheld</button>
-            <button v-on:click='chooseVote' name='against'>Against</button>
-        </div>
+            <div v-else-if='token' class='level'>
+                <div class="level-item">
+                    <b-button class='is-danger' v-on:click='chooseVote' name='for'>For</b-button>
+                </div>
+                <div class="level-item">
+                    <b-button class='is-danger' v-on:click='chooseVote' name='withheld'>Withheld</b-button>
+                </div>
+                <div class="level-item">
+                    <b-button class='is-danger' v-on:click='chooseVote' name='against'>Against</b-button>
+                </div>
+            </div>
 
-        <div v-else>
-            <p>Please reconfirm your details before voting</p>
-            <login-form @loginSubmit='loginSubmit' />
-            <p v-if='err'>{{err}}</p>
+            <div v-else class='notification'>
+                <p class='subtitle'>Please reconfirm your details before voting</p>
+                <login-form @loginSubmit='loginSubmit' />
+                <p v-if='err'>{{err}}</p>
+            </div>
         </div>
 
     </div>
@@ -122,15 +130,10 @@ export default {
 </script>
 
 <style scoped>
-#chooser {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between
-}
 
-#chooser button {
-    flex-grow: 1;
-    height: 250px;
+.level-item button {
+    width: 15em;
+    height: 15em;
     margin: 1em;
 }
 </style>

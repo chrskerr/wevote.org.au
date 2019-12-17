@@ -1,11 +1,10 @@
 <template>
 	<div id="app">
     
-		<div class='level has-background-primary '>	
+		<div class='level has-background-info'>	
 			<div class="level-left">
 				<div class="level-item">
-					<b-icon pack="fas" icon="dragon" size="is-large" />
-					<h1 class='title has-text-white'>F-king Vote</h1>
+					<h1 id='app-name' class='title has-text-white'>Referendum</h1>
 				</div>
 
 				<div class="level-item">
@@ -41,6 +40,12 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Courgette&display=swap');
+
+#app-name {
+	font-family: 'Courgette', cursive;
+}
+
 .level-item {
 	margin: 0.5em;
 }
@@ -56,18 +61,21 @@ a.has-text-white:hover {
 a.router-link-exact-active {
 	text-decoration: underline;
 }
-
 </style>
+
+
+
 
 <style lang="scss">
 // Import Bulma's core
 @import "~bulma/sass/utilities/_all";
 
 // Set your colors
-$primary: #8c67ef;
+$primary: #4fc3f7;
 $primary-invert: findColorInvert($primary);
 $twitter: #4099FF;
 $twitter-invert: findColorInvert($twitter);
+
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (

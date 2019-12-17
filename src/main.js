@@ -4,9 +4,10 @@ import App from './App.vue';
 import router from './router';
 import { createProvider } from './vue-apollo';
 import Buefy from 'buefy';
+// import '../node_modules/@fortawesome/fontawesome-free/js/all.js'
 
 Vue.use(Buefy, {
-  defaultIconPack: 'fas',
+  defaultIconPack: 'fas'
 });
 Vue.use(Vuex);
 Vue.config.productionTip = false;
