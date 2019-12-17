@@ -40,7 +40,6 @@ export default {
     },
     methods: {
         loginSubmit: function() {
-            console.log('hit')
             this.$emit('loginSubmit', this.formData);
         }
     }

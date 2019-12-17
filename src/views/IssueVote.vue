@@ -80,12 +80,6 @@ export default {
             if ( e.target.name === 'change' ) {
                 this.response = '';
             } else if ( e.target.name === 'confirm' ) {
-                console.log({
-                        token: this.token,
-                        response: this.response,
-                        issueId: this.$route.params.issue,
-                        identifier: this.$store.state.user.identifier
-                    })
                 this.$apollo.query({
                     query: gql` 
                         query giveToken($issueId: String, $token: String!, $response: String!, $identifier: String!) {
