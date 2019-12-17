@@ -1,12 +1,20 @@
 <template>
-  <div class="home">
-    <dl>
-      <li v-for='issue in all' v-bind:key='issue.issueId'><router-link :to="{ name: 'issue', params: { issue: issue.issueId }}">{{issue.issueId}} - {{issue.question}} -- {{issue.summary}}</router-link></li>
-    </dl>
+	<div class="home container">
+		
+		<div class="hero is-info is-bold">
+			<div class="hero-body">
+				<div class="container">
+					<h2 class='title'>Title of Referendums app</h2>
+					<p>Very high level information, with a link to About to go deeper.</p>
+				</div>
+			</div>
+		</div>
 
-    <p>{{ $store.state.user.identifier }}</p>
+		<ul>
+			<li v-for='issue in all' v-bind:key='issue.issueId'><router-link :to="{ name: 'issue', params: { issue: issue.issueId }}">{{issue.issueId}} - {{issue.question}} -- {{issue.summary}}</router-link></li>
+		</ul>
 
-  </div>
+	</div>
 </template>
 
 <script>
@@ -19,6 +27,7 @@ export default {
       all: ""
     }
   },
+
   mounted () {
     this.$apollo.query({
       query: gql`query ($identifier: String) {

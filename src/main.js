@@ -3,8 +3,11 @@ import Vuex from 'vuex'
 import App from './App.vue';
 import router from './router';
 import { createProvider } from './vue-apollo';
-// import 'milligram';
+import Buefy from 'buefy';
 
+Vue.use(Buefy, {
+  defaultIconPack: 'fas',
+});
 Vue.use(Vuex);
 Vue.config.productionTip = false;
 

@@ -1,34 +1,23 @@
 <template>
     
     <div id="login">
-        
         <div v-if='user.surname'>
-            <span>{{user.surname}}</span>
-            <button v-on:click='logOut'>Log Out</button>
+            <p class='has-text-white is-inline-block' style="padding: 0 1em">{{user.surname}}</p>
+            <b-button size='is-small' v-on:click='logOut'>Log Out</b-button>
         </div>
 
         <div v-else> 
-            <button v-on:click='toggleModal'>Log In</button>
-        
-            <div v-if='modalShown' id='loginModal'>
+            <b-button size='is-small' v-on:click='toggleModal'>Log In</b-button>
+            <b-modal :active.sync='modalShown' has-modal-card trap-focus >
                 
-                <button v-on:click='toggleModal'>Close</button>
-                
-                <login-form v-if="inputFormShown" @loginSubmit='loginSubmit' />
-
-                <div v-else>
-                    <p>{{formData.surname}} - {{formData.licence}} - {{formData.state}}</p>
-
-                    <p>Is this information correct?</p>
-                    <button v-on:click='loginConfirm' name='yes'>Yes</button>
-                    <button v-on:click='loginConfirm' name='no'>No</button>
+                <div class='modal-card'>
+                    <div class="modal-card-body">                        
+                        <login-form @loginSubmit='loginSubmit' />
+                    </div>
                 </div>
-
-            </div>
+            </b-modal>
         </div>
-
     </div>
-
 </template>
 
 <script>
@@ -39,9 +28,7 @@ export default {
     name: 'login',
     data () {
         return {
-            inputFormShown: true,
-            modalShown: false,
-            formData: ''
+            modalShown: false
         }
     },
     methods: {
@@ -49,37 +36,26 @@ export default {
             this.modalShown = !this.modalShown;
         },
         loginSubmit: function(data) {
-            this.formData = data;
-            this.inputFormShown = false;
-        },
-        loginConfirm: function (e) {
-            if (e.target.name === 'no') {
-                [this.inputFormShown, this.formData] = [true, {}];
-                // reset the form
-                // TO-DO: retain state in the form
-
-            } else {
-                this.$apollo.query({
-                    query: gql`
-                        query Identifiers($licence: String!, $state: String!, $surname: String!) {
-                            identifier: getIdentifier(licence: $licence, state: $state, surname: $surname) {
-                                identifier
-                            }
+            this.$apollo.query({
+                query: gql`
+                    query Identifiers($licence: String!, $state: String!, $surname: String!) {
+                        getIdentifier(licence: $licence, state: $state, surname: $surname) {
+                            identifier
                         }
-                    `,
-                    variables: {
-                        licence: this.formData.licence,
-                        state: this.formData.state,
-                        surname: this.formData.surname,
-                    }  
-                }).then(function(res) {
-                    this.$store.commit('updateUser', {
-                        identifier: res.data.identifier.identifier,
-                        surname: this.formData.surname
-                    });
-                    [this.modalShown, this.inputFormShown] = [false, true];
-                }.bind(this));
-            }
+                    }
+                `,
+                variables: {
+                    licence: data.licence,
+                    state: data.state,
+                    surname: data.surname,
+                }  
+            }).then((res) => {
+                this.$store.commit('updateUser', {
+                    identifier: res.data.getIdentifier.identifier,
+                    surname: data.surname
+                });
+                this.modalShown = false;
+            });
         },
         logOut: function() {            
             this.$store.commit('updateUser', "")
@@ -97,7 +73,7 @@ export default {
 </script>
 
 <style scoped>
-form {
+/* form {
     max-width: 640px;
     margin: 0 auto;
 }
@@ -123,6 +99,6 @@ input {
 
 #login> * {
     margin: 0 1em;
-}
+} */
 
 </style>
