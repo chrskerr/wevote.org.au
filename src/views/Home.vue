@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-    <ul>
+    <dl>
       <li v-for='issue in all' v-bind:key='issue.issueId'><router-link :to="{ name: 'issue', params: { issue: issue.issueId }}">{{issue.issueId}} - {{issue.question}} -- {{issue.summary}}</router-link></li>
-    </ul>
+    </dl>
 
     <p>{{ $store.state.user.identifier }}</p>
 

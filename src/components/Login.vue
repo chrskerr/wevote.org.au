@@ -115,4 +115,14 @@ input {
     background: rgba(255,255,255,1);
     padding: 5em;
 }
+
+#login {
+    display: flex;
+    align-content: right;
+}
+
+#login> * {
+    margin: 0 1em;
+}
+
 </style>
