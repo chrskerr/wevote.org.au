@@ -29,4 +29,4 @@ export function createProvider (options = {}) {
   });
 
   return apolloProvider;
-};
+}
