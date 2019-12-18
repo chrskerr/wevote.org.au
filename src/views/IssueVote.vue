@@ -4,7 +4,7 @@
         <div class="section">
             <p class='title'>{{issue.question}}</p>
 
-            <div v-if='response'>
+            <div class='container' v-if='response'>
                 <p>Please confirm a vote of: <em>{{response}}</em></p>
                 <b-button v-on:click='confirmVote' name='confirm'>Confirm</b-button>
                 <b-button v-on:click='confirmVote' name='change'>Change</b-button>
@@ -12,13 +12,10 @@
 
             <div v-else-if='token' class='level'>
                 <div class="level-item">
-                    <b-button class='is-danger' v-on:click='chooseVote' name='for'>For</b-button>
+                    <b-button class='is-primary' v-on:click='chooseVote' name='for'>For</b-button>
                 </div>
                 <div class="level-item">
-                    <b-button class='is-danger' v-on:click='chooseVote' name='withheld'>Withheld</b-button>
-                </div>
-                <div class="level-item">
-                    <b-button class='is-danger' v-on:click='chooseVote' name='against'>Against</b-button>
+                    <b-button class='is-primary' v-on:click='chooseVote' name='against'>Against</b-button>
                 </div>
             </div>
 

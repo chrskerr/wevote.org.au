@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
     
-		<div class='level has-background-info'>	
+		<div class='level has-background-twitter'>	
 			<div class="level-left">
 				<div class="level-item">
 					<h1 id='app-name' class='title has-text-white'>Referendum</h1>
@@ -13,6 +13,9 @@
 					</router-link>
 					<router-link class="has-text-white" to='/about'>
 						About
+					</router-link>
+					<router-link class="has-text-white" to='/analytics'>
+						Analytics
 					</router-link>
 				</div>
 			</div>
@@ -71,10 +74,13 @@ a.router-link-exact-active {
 @import "~bulma/sass/utilities/_all";
 
 // Set your colors
-$primary: #4fc3f7;
+$primary: #4062FF;
 $primary-invert: findColorInvert($primary);
-$twitter: #4099FF;
+$twitter: #1466CC;
 $twitter-invert: findColorInvert($twitter);
+$info: #FFD801;
+$info-invert: findColorInvert($info);
+
 
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')

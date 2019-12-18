@@ -1,7 +1,10 @@
 <template>
   <div class="about">
-    <p>This is an about page</p>
-    <p>{{identifier}}</p>
+        <div class="section">
+            <div class="container">
+                <p>About coming soon</p>
+            </div>
+        </div>
   </div>
 </template>
 

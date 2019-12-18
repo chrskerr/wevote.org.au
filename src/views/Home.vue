@@ -1,7 +1,7 @@
 <template>
 	<div class="home container">
 		
-		<div class="hero is-success">
+		<div class="hero is-info">
 			<div class="hero-body">
 				<div class="container">
 					<h2 class='title'>Title of Referendums app</h2>
@@ -13,7 +13,7 @@
 		<div class="section">
 			<div class='tile is-ancestor'>
 				<div class="tile is-vertical is-parent is-12">
-					<div class="tile is-child notification is-light is-bold" v-for='issue in all' v-bind:key='issue.issueId'>
+					<div class="tile is-child notification is-primary is-bold" v-for='issue in all' v-bind:key='issue.issueId'>
 						<div class="level">
 							<div class="level-left">
 								<div class="container">

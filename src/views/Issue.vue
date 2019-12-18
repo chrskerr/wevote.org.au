@@ -17,13 +17,13 @@
 					</div>
 					<div class="tile">
 						<div class="tile is-parent">
-							<div class="tile is-child notification is-warning">
+							<div class="tile is-child notification is-primary">
 								<p class='subtitle'>Case for:</p>
 								<p>{{ issue.caseFor }}</p>
 							</div>
 						</div>
 						<div class="tile is-parent">
-							<div class="tile is-child notification is-warning">
+							<div class="tile is-child notification is-primary">
 								<p class='subtitle'>Case against:</p>
 								<p>{{ issue.caseAgainst }}</p>
 							</div>
