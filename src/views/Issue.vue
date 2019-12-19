@@ -10,7 +10,7 @@
 							<p> {{ issue.description }} </p>
 							<div class="level">
 								<div class="level-item">
-									<router-link class="button is-large" :to="{name: 'issue-vote', params: {issue: $route.params.issue}}">Vote!</router-link>
+									<router-link class="button is-large is-dark" :to="{name: 'issue-vote', params: {issue: $route.params.issue}}">Vote!</router-link>
 								</div>
 							</div>
 						</div>

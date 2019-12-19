@@ -23,7 +23,7 @@
 							</div>
 							<div class="level-right">
 								<div class="level-item">
-									<router-link :to="{ name: 'issue', params: { issue: issue.issueId }}">More</router-link>
+									<router-link class="button is-medium is-light is-outlined" :to="{ name: 'issue', params: { issue: issue.issueId }}">More</router-link>
 								</div>
 							</div>
 						</div>
