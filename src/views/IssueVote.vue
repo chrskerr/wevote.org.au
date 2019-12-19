@@ -57,7 +57,6 @@ export default {
             this.response = e.target.name;
         },
         confirmVote: function(e) {
-            console.log(e.target.name)
             if ( e.target.name === 'change' ) {
                 this.response = '';
             } else if ( e.target.name === 'confirm' ) {
