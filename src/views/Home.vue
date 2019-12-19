@@ -23,7 +23,7 @@
 							</div>
 							<div class="level-right">
 								<div class="level-item">
-									<router-link :to="{ name: 'issue', params: { issue: issue.issueId }}">Find out more</router-link>
+									<router-link :to="{ name: 'issue', params: { issue: issue.issueId }}">More</router-link>
 								</div>
 							</div>
 						</div>

@@ -10,7 +10,7 @@
 							<p> {{ issue.description }} </p>
 							<div class="level">
 								<div class="level-item">
-									<router-link class="button is-large" :to="{name: 'issue-vote', params: {issue: issue.issueId}}">Vote!</router-link>
+									<router-link class="button is-large" :to="{name: 'issue-vote', params: {issue: $route.params.issue}}">Vote!</router-link>
 								</div>
 							</div>
 						</div>
@@ -51,8 +51,8 @@ export default {
   mounted () {
     this.$apollo.query({
       query: gql`
-        query get($issue: Int!) {
-          issue: getIssue(issueId: $issue) {
+        query get($issueId: Int!) {
+          issue: getIssue(issueId: $issueId) {
             issueId
             question
             description
@@ -63,7 +63,7 @@ export default {
         }
       `,
       variables: {
-        issue: this.$route.params.issue
+        issueId: parseInt(this.$route.params.issue)
       }
     }).then( res => this.issue = res.data.issue )
   }

@@ -21,14 +21,14 @@ const routes = [
     component: () => import('../views/Analytics.vue')
   },
   {
-    path: '/:issue',
-    name: 'issue',
-    component: () => import('../views/Issue.vue')
-  },
-  {
     path: '/:issue/vote',
     name: 'issue-vote',
     component: () => import('../views/IssueVote.vue')
+  },
+  {
+    path: '/:issue',
+    name: 'issue',
+    component: () => import('../views/Issue.vue'),
   },
 ]
 
