@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import gql from 'graphql-tag';
+
 export default {
     name: 'login-form',
     data () {
@@ -40,7 +42,31 @@ export default {
     },
     methods: {
         loginSubmit: function() {
-            this.$emit('loginSubmit', this.formData);
+            this.$apollo.query({
+                query: gql`
+                    query Identifiers($licence: String!, $state: String!, $surname: String!) {
+                        checkIdentity(licence: $licence, state: $state, surname: $surname) {
+                            identifier
+                            alreadyVoted
+                        }
+                    }
+                `,
+                variables: {
+                    licence: this.formData.licence,
+                    state: this.formData.state,
+                    surname: this.formData.surname,
+                }  
+            }).then((res) => {
+                this.$store.commit('updateUser', {
+                    identifier: res.data.checkIdentity.identifier,
+                    surname: this.formData.surname,
+                    alreadyVoted: res.data.checkIdentity.alreadyVoted
+                });
+                this.$emit('loginSubmit', {
+                    ...this.formData,
+                    alreadyVoted: res.data.checkIdentity.alreadyVoted
+                    });
+            });
         }
     }
 }

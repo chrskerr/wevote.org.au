@@ -51,7 +51,7 @@ export default {
   mounted () {
     this.$apollo.query({
       query: gql`
-        query get($issue: String!) {
+        query get($issue: Int!) {
           issue: getIssue(issueId: $issue) {
             issueId
             question

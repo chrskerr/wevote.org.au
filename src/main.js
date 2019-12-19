@@ -16,7 +16,8 @@ const store = new Vuex.Store({
   state: {
     user: {
       identifier: window.localStorage.identifier,
-      surname: window.localStorage.surname
+      surname: window.localStorage.surname,
+      alreadyVoted: ''
     }
   },
   mutations: {

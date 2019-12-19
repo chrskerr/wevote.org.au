@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import gql from 'graphql-tag';
 import LoginForm from './LoginForm.vue'
 
 export default {
@@ -36,26 +35,9 @@ export default {
             this.modalShown = !this.modalShown;
         },
         loginSubmit: function(data) {
-            this.$apollo.query({
-                query: gql`
-                    query Identifiers($licence: String!, $state: String!, $surname: String!) {
-                        getIdentifier(licence: $licence, state: $state, surname: $surname) {
-                            identifier
-                        }
-                    }
-                `,
-                variables: {
-                    licence: data.licence,
-                    state: data.state,
-                    surname: data.surname,
-                }  
-            }).then((res) => {
-                this.$store.commit('updateUser', {
-                    identifier: res.data.getIdentifier.identifier,
-                    surname: data.surname
-                });
+            if (data) {
                 this.modalShown = false;
-            });
+            }
         },
         logOut: function() {            
             this.$store.commit('updateUser', "")
@@ -73,32 +55,5 @@ export default {
 </script>
 
 <style scoped>
-/* form {
-    max-width: 640px;
-    margin: 0 auto;
-}
-input {
-    display: block;
-    margin: 0 auto;
-}
-
-#loginModal {
-    position: absolute;
-    top: 0;
-    height: 100vh;
-    left: 0;
-    width: 100vw;
-    background: rgba(255,255,255,1);
-    padding: 5em;
-}
-
-#login {
-    display: flex;
-    align-content: right;
-}
-
-#login> * {
-    margin: 0 1em;
-} */
 
 </style>

@@ -6,16 +6,16 @@
 
             <div class='container' v-if='response'>
                 <p>Please confirm a vote of: <em>{{response}}</em></p>
-                <b-button v-on:click='confirmVote' name='confirm'>Confirm</b-button>
-                <b-button v-on:click='confirmVote' name='change'>Change</b-button>
+                <button class='button' v-on:click='confirmVote' name='confirm'>Confirm</button>
+                <button class='button' v-on:click='confirmVote' name='change'>Change</button>
             </div>
 
-            <div v-else-if='token' class='level'>
+            <div v-else-if='identified' class='level'>
                 <div class="level-item">
-                    <b-button class='is-primary' v-on:click='chooseVote' name='for'>For</b-button>
+                    <button class='has-background-primary button' v-on:click='chooseVote' name='for'>For</button>
                 </div>
                 <div class="level-item">
-                    <b-button class='is-primary' v-on:click='chooseVote' name='against'>Against</b-button>
+                    <button class='has-background-primary button' v-on:click='chooseVote' name='against'>Against</button>
                 </div>
             </div>
 
@@ -38,64 +38,46 @@ export default {
     data () {
         return {
             issue: '',
-            token: '',
+            identified: false,
             response: '',
-            err: ''
+            err: '',
+            data: ''
         }
     },
     methods: {
         loginSubmit: function(data) {
-            this.$apollo.query({
-                query: gql` 
-                    query Token($issueId: String!, $licence: String!, $state: String!, $surname: String!) {
-                            getToken(issueId: $issueId, licence: $licence, state: $state, surname: $surname) {
-                                token
-                                identifier
-                                err
-                            }
-                        }   
-                `,
-                variables: {
-                    issueId: this.$route.params.issue,
-                    surname: data.surname,
-                    licence: data.licence,
-                    state: data.state
-                }
-            }).then( res => {
-                this.token = res.data.getToken.token;
-                this.err = res.data.getToken.err;
-                this.$store.commit('updateUser', {
-                        identifier: res.data.getToken.identifier,
-                        surname: data.surname
-                    });
-                })
+            this.data = data;
+            if (data.alreadyVoted.includes(this.$route.params.issue)) {
+                this.err = "You've already voted"
+            } else {
+                this.identified = true;
+            }
         },
         chooseVote: function(e) {
             this.response = e.target.name;
         },
         confirmVote: function(e) {
+            console.log(e.target.name)
             if ( e.target.name === 'change' ) {
                 this.response = '';
             } else if ( e.target.name === 'confirm' ) {
                 this.$apollo.query({
                     query: gql` 
-                        query giveToken($issueId: String, $token: String!, $response: String!, $identifier: String!) {
-                            giveToken(token: $token, response: $response, identifier: $identifier, issueId: $issueId) {
+                        query recordVote($issueId: Int!, $response: String!, $licence: String!, $state: String!, $surname: String!) {
+                            recordVote(issueId: $issueId, response: $response, licence: $licence, state: $state, surname: $surname) {
                                 message
                             }
                         }   
                     `,
                     variables: {
-                        token: this.token,
-                        response: this.response,
                         issueId: this.$route.params.issue,
-                        identifier: this.$store.state.user.identifier
+                        response: this.response,
+                        licence: this.data.licence,
+                        state: this.data.state,
+                        surname: this.data.surname
                     }
-                }).then(  () => {
-                    
+                }).then(() => {
                     this.$router.push('/')
-
-                    // TODO: return to Home and re-pull all data
                 })
             }
         }
