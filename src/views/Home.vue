@@ -4,8 +4,10 @@
 		<div class="hero is-info">
 			<div class="hero-body">
 				<div class="container">
-					<h2 class='title'>Title of Referendums app</h2>
-					<p>Very high level information, with a link to About to go deeper.</p>
+					<h2 class='title'>The New Australia</h2>
+					<p>The days of vote once, and hope that your candidate is loyal to their platform should be behind us. We are now in a position to agree and enforce top-level policy for the nation, which our politicians can then be charged with executing.</p>
+					<br>
+					<p>Please join us in voting below to set policy for our future.</p>
 				</div>
 			</div>
 		</div>
