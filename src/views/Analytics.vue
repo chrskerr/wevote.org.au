@@ -70,7 +70,7 @@ export default {
     },
     methods: {
         refresh () {
-            axios.get("http://localhost:3125/referendums/analytics")
+            axios.get("http://api.chrskerr.com/referendums/analytics")
             .then( res => { this.data = res.data });
         } 
     },
