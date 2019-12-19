@@ -3,9 +3,8 @@
         <div class="section">
             <div class="container">
                 <p class='title'>Blockchain Tables (live)</p>
-
-                <button class='button' v-on:click='refresh'>Refresh</button>
-
+                <hr>
+                <p class="subtitle">Blocks</p>
                 <table class='table' v-if='data.blocks[0]'>
                     <thead>
                         <th v-for="(value, name, index) in data.blocks[0]" v-bind:key='index'>{{name}}</th>
@@ -16,7 +15,8 @@
                         </tr>
                     </tbody>
                 </table>
-
+                <hr>
+                <p class="subtitle">Transactions</p>
                 <table class='table' v-if='data.transactions[0]'>
                     <thead>
                         <th v-for="(value, name, index) in data.transactions[0]" v-bind:key='index'>{{name}}</th>
@@ -27,7 +27,8 @@
                         </tr>
                     </tbody>
                 </table>
-
+                <hr>
+                <p class="subtitle">Votes</p>
                 <table class='table' :v-if='data.votes[0]'>
                     <thead>
                         <th v-for="(value, name, index) in data.votes[0]" v-bind:key='index'>{{name}}</th>
@@ -38,7 +39,8 @@
                         </tr>
                     </tbody>
                 </table>
-
+                <hr>
+                <p class="subtitle">Tokens</p>
                 <table class='table' v-if='data.tokens[0]'>
                     <thead>
                         <th v-for="(value, name, index) in data.tokens[0]" v-bind:key='index'>{{name}}</th>
@@ -49,9 +51,6 @@
                         </tr>
                     </tbody>
                 </table>
-
-
-
             </div>
         </div>
     </div>

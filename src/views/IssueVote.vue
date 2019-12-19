@@ -8,6 +8,7 @@
                 <p>Please confirm a vote of: <em>{{response}}</em></p>
                 <button class='button' v-on:click='confirmVote' name='confirm'>Confirm</button>
                 <button class='button' v-on:click='confirmVote' name='change'>Change</button>
+                <p v-if='err'>{{err}}</p>
             </div>
 
             <div v-else-if='identified' class='level'>
@@ -65,18 +66,23 @@ export default {
                         query recordVote($issueId: Int!, $response: String!, $licence: String!, $state: String!, $surname: String!) {
                             recordVote(issueId: $issueId, response: $response, licence: $licence, state: $state, surname: $surname) {
                                 message
+                                error
                             }
                         }   
                     `,
                     variables: {
-                        issueId: this.$route.params.issue,
+                        issueId: parseInt(this.$route.params.issue),
                         response: this.response,
                         licence: this.data.licence,
                         state: this.data.state,
                         surname: this.data.surname
                     }
-                }).then(() => {
-                    this.$router.push('/')
+                }).then((res) => {
+                    if (res.data.recordVote.error) {
+                        this.err = res.data.recordVote.error
+                    } else {
+                        this.$router.push('/')
+                    }
                 })
             }
         }
