@@ -4,7 +4,7 @@
 		<div class='level has-background-primary'>	
 			<div class="level-left">
 				<div class="level-item">
-					<h1 id='app-name' class='title has-text-white'>Referendum</h1>
+					<h1 id='app-name' class='title has-text-white'>WeVote</h1>
 				</div>
 
 				<div class="level-item">
@@ -46,10 +46,10 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Courgette&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 #app-name {
-	font-family: 'Courgette', cursive;
+	font-family: 'Montserrat', cursive;
 }
 
 .level-item {
