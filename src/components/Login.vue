@@ -3,16 +3,17 @@
     <div id="login">
         <div v-if='user.surname'>
             <p class='has-text-white is-inline-block' style="padding: 0 1em">{{user.surname}}</p>
-            <b-button size='is-small' v-on:click='logOut'>Log Out</b-button>
+            <b-button type='is-light' outlined v-on:click='logOut'>Log Out</b-button>
         </div>
 
         <div v-else> 
-            <b-button size='is-small' v-on:click='toggleModal'>Log In</b-button>
+            <b-button type='is-light' outlined v-on:click='toggleModal'>Log In</b-button>
             <b-modal :active.sync='modalShown' has-modal-card trap-focus >
-                
                 <div class='modal-card'>
-                    <div class="modal-card-body">                        
+                    <div class="modal-card-body">          
                         <login-form @loginSubmit='loginSubmit' />
+                        <p>Logging in will show which votes you have already completed.</p>
+                        <p>You will need to re-enter your details to complete a vote later to ensure no-one can vote on your behalf.</p>              
                     </div>
                 </div>
             </b-modal>
@@ -55,5 +56,8 @@ export default {
 </script>
 
 <style scoped>
-
+    .modal-card p {
+        margin-top: 0.5em;
+        font-style: italic;
+    }
 </style>

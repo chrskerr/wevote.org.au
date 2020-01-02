@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
     
-		<div class='level has-background-twitter'>	
+		<div class='level has-background-primary'>	
 			<div class="level-left">
 				<div class="level-item">
 					<h1 id='app-name' class='title has-text-white'>Referendum</h1>
@@ -12,7 +12,7 @@
 						Home
 					</router-link>
 					<router-link class="has-text-white" to='/about'>
-						About
+						Why
 					</router-link>
 					<router-link class="has-text-white" to='/analytics'>
 						Analytics
@@ -21,6 +21,9 @@
 			</div>
 
 			<div class="level-right">
+				<div class="level-item">
+					<b-button type='is-light' outlined>Subscribe</b-button>
+				</div>
 				<div class="level-item">
 					<login />
 				</div>
@@ -64,6 +67,13 @@ a.has-text-white:hover {
 a.router-link-exact-active {
 	text-decoration: underline;
 }
+
+@media only screen and (max-width: 768px) {
+	.level {
+		padding-bottom: 0.5em;
+	}
+}
+
 </style>
 
 
@@ -74,11 +84,11 @@ a.router-link-exact-active {
 @import "~bulma/sass/utilities/_all";
 
 // Set your colors
-$primary: #4062FF;
+$primary: #00843D;
 $primary-invert: findColorInvert($primary);
-$twitter: #1466CC;
+$twitter: #FFCD00;
 $twitter-invert: findColorInvert($twitter);
-$info: #FFD801;
+$info: #2E9960;
 $info-invert: findColorInvert($info);
 
 
