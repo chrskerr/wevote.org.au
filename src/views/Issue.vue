@@ -5,29 +5,29 @@
 			<div class="tile is-ancestor">
 				<div class="tile is-vertical">				
 					<div class="tile is-parent">
-						<div class='tile is-child notification is-info'>
+						<div class='tile is-child notification is-twitter'>
 							<h3 class='title'>{{ issue.question }}</h3>
 							<p> {{ issue.description }} </p>
-							<div class="level">
-								<div class="level-item">
-									<router-link class="button is-large is-dark is-outlined" :to="{name: 'issue-vote', params: {issue: $route.params.issue}}">Vote!</router-link>
-								</div>
-							</div>
 						</div>
 					</div>
 					<div class="tile">
 						<div class="tile is-parent">
-							<div class="tile is-child notification is-primary">
+							<div class="tile is-child notification is-light">
 								<p class='subtitle'>Case for:</p>
 								<p>{{ issue.caseFor }}</p>
 							</div>
 						</div>
 						<div class="tile is-parent">
-							<div class="tile is-child notification is-primary">
+							<div class="tile is-child notification is-light">
 								<p class='subtitle'>Case against:</p>
 								<p>{{ issue.caseAgainst }}</p>
 							</div>
 						</div>	
+					</div>
+					<div class="level">
+						<div class="level-item">
+							<router-link class="button is-large is-primary is-outlined" :to="{name: 'issue-vote', params: {issue: $route.params.issue}}">Vote!</router-link>
+						</div>
 					</div>
 				</div>
 			</div>

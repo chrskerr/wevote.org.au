@@ -2,6 +2,9 @@
     <div id="issue-vote">
 
         <div class="section">
+
+            <router-link class="button is-outlined is-pulled-right" :to="{name: 'issue', params: {issue: $route.params.issue}}">Back</router-link>
+
             <p class='title'>{{issue.question}}</p>
 
             <div class='container' v-if='response'>
@@ -25,6 +28,7 @@
                 <login-form @loginSubmit='loginSubmit' />
                 <p v-if='err'>{{err}}</p>
             </div>
+
         </div>
 
     </div>
