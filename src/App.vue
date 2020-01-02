@@ -11,8 +11,8 @@
 					<router-link to="/" class='has-text-white'>
 						Home
 					</router-link>
-					<router-link class="has-text-white" to='/about'>
-						Why
+					<router-link class="has-text-white" to='/whitepaper'>
+						Whitepaper
 					</router-link>
 					<router-link class="has-text-white" to='/analytics'>
 						Analytics
