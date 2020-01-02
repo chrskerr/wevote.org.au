@@ -2,7 +2,7 @@
 
 
 ## Intent
-I am building an application which Australian's case use for fast, secure, reliable and immutable referendum voting. 
+I am building an application which Australian's can use for fast, secure, reliable and immutable referendum voting. 
 
 I am intending to push this as an open-source, open-participation, communited held project to prevent it being consumed into a closed, hidden and expensive consultant-led project. 
 
