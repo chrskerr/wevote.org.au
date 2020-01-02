@@ -4,11 +4,11 @@
             <div class="container">
                 <p class="title">Why</p>
                 <p>I created this tool because it is my belief that <strong>good ideas should be used, regardless of party or political orientation.</strong></p>
-                <p>I believe that we should not be divided along party lines, or supporting individual politicians who are "good enough".</p> 
+                <p>We should not be divided along party lines. Libs vs Labour. Right vs Left. Supporting individual politicians who are "good enough", just because they're all we have.</p> 
                 <p>Instead, we should be giving a voice to new ideas. They should all be in one consistant place. Hearing the arguments for and against should be simple, and making an informed decision should be your right.</p>
 
                 <p class="title">How</p>
-                <p>I believe that online voting can be secure, auditable, reliable, fast and unchangable; and that these things are necessary to create a voting platform which cannot be tampered with.</p>
+                <p>Online voting can be secure, auditable, reliable, fast and unchangable; and that these things are necessary to create a voting platform which cannot be tampered with.</p>
                 <p>For this reason it is built on a blockchain-style record of vote, which prevents changing already-cast votes and allows for open publication of raw voting data. We also store vote participation and vote response seperately, to ensure that individuals cannot be linked to a response, as it is currently in our voting system.</p>
 
                 <p class="title">Please help</p>
