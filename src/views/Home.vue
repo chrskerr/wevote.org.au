@@ -1,6 +1,5 @@
 <template>
-	<div class="home container">
-		
+	<div class="home container">	
 		<div class="section">
 			<div class='tile is-ancestor'>
 				<div class="tile is-vertical is-parent is-12">
