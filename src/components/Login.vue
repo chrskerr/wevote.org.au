@@ -17,28 +17,17 @@
                 </div>
             </b-modal>
         </div>
-
-		<b-modal :active.sync='firstOpen' trap-focus has-modal-card aria-modal>
-            <div class="modal-card">
-                <div class='modal-card-body'>
-                    <whitepaper />
-                </div>
-            </div>
-        </b-modal>
-
     </div>
 </template>
 
 <script>
 import LoginForm from './LoginForm.vue'
-import Whitepaper from '../views/Whitepaper.vue'
 
 export default {
     name: 'login',
     data () {
         return {
             modalShown: false,
-            firstOpen: true,
         }
     },
     methods: {
@@ -60,8 +49,10 @@ export default {
         }
     },
     components: {
-        'login-form': LoginForm,
-        'whitepaper': Whitepaper
+        'login-form': LoginForm
+    },
+    mounted () {
+        this.$router.push({ path: 'whitepaper' }) // redirect to whitepaper on first-load only
     }
 }
 </script>
