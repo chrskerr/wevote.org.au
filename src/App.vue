@@ -14,15 +14,18 @@
 					<router-link class="has-text-white" to='/whitepaper'>
 						Whitepaper
 					</router-link>
-					<router-link class="has-text-white" to='/analytics'>
-						Analytics
+					<router-link class="has-text-white" to='/summary'>
+						Votes Summary
+					</router-link>
+					<router-link class="has-text-white" to='/chainview'>
+						Blockchain View
 					</router-link>
 				</div>
 			</div>
 
 			<div class="level-right">
 				<div class="level-item">
-					<b-button type='is-light' outlined>Subscribe</b-button>
+					<button class='button is-outlined is-light'>Subscribe</button>
 				</div>
 				<div class="level-item">
 					<login />
@@ -73,11 +76,7 @@ a.router-link-exact-active {
 		padding-bottom: 0.5em;
 	}
 }
-
 </style>
-
-
-
 
 <style lang="scss">
 // Import Bulma's core

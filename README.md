@@ -15,4 +15,6 @@ I am looking for people who can help with the code, with the execution, UX/UI, s
 
 The back-end also needs a lot of work. The "blockchain" is very immature and the system is blended into another Node server I was running for simplicities sake. I will split this out into its own project & repo as soon as necessary.
 
+[https://github.com/chrskerr/WeVote-server](https://github.com/chrskerr/WeVote-server)
+
 chriskerr@me.com

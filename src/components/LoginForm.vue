@@ -1,26 +1,37 @@
 <template>
-    
     <div id="login-form">
         <section>
-            <b-field label="Licence / ID Card number">
-                <b-input type="number" v-model="formData.licence"/>
-            </b-field>
-            <b-field label='State'>
-                <b-select placeholder="Please select" v-model='formData.state' required>
-                    <option value="nsw">NSW</option>
-                    <option value="qld">Queensland</option>
-                    <option value="vic">Victoria</option>
-                    <option value="tas">Tasmania</option>
-                    <option value="sa">South Australia</option>
-                    <option value="nt">Northern Territory</option>
-                    <option value="act">ACT</option>
-                    <option value="wa">Western Australia</option>
-                </b-select>
-            </b-field>
-            <b-field label="Surname">
-                <b-input type="text" v-model='formData.surname'/>
-            </b-field>
-            <b-button v-on:click.prevent='loginSubmit'>Log In</b-button>
+            <div class="field">
+                <label class='label'>Licence / ID Card number</label>
+                <div class="control">
+                    <input class='input' type="number" v-model="formData.licence"/>
+                </div>
+            </div>
+            <div class="field">
+                <label class='label'>State</label>
+                <div class="control">
+                    <div class="select">
+                        <select placeholder="Please select" v-model='formData.state' required>
+                            <option value="nsw">NSW</option>
+                            <option value="qld">Queensland</option>
+                            <option value="vic">Victoria</option>
+                            <option value="tas">Tasmania</option>
+                            <option value="sa">South Australia</option>
+                            <option value="nt">Northern Territory</option>
+                            <option value="act">ACT</option>
+                            <option value="wa">Western Australia</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="field">
+            <label class='label'>Surname</label>
+                <div class="control">
+                    <input class='input' type="text" v-model='formData.surname'/>
+                </div>
+            </div>
+            <button class='button' v-on:click.prevent='loginSubmit'>Log In</button>
         </section>
     </div>
 
@@ -73,12 +84,7 @@ export default {
 </script>
 
 <style scoped>
-    /* form {
-        max-width: 640px;
-        margin: 0 auto;
-    }
-    input {
+    /* .select {
         display: block;
-        margin: 0 auto;
     } */
 </style>

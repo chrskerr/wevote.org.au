@@ -16,9 +16,14 @@ const routes = [
     component: () => import('../views/Whitepaper.vue')
   },
   {
-    path: '/analytics',
-    name: 'analytics',
-    component: () => import('../views/Analytics.vue')
+    path: '/chainview',
+    name: 'chainview',
+    component: () => import('../views/ChainView.vue')
+  },
+  {
+    path: '/summary',
+    name: 'summary',
+    component: () => import('../views/Summary.vue')
   },
   {
     path: '/:issue/vote',

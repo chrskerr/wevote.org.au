@@ -2,11 +2,11 @@
     <div id="login">
         <div v-if='user.surname'>
             <p class='has-text-white is-inline-block' style="padding: 0 1em">{{user.surname}}</p>
-            <b-button type='is-light' outlined v-on:click='logOut'>Log Out</b-button>
+            <button class='button is-outlined is-light' v-on:click='logOut'>Log Out</button>
         </div>
 
         <div v-else> 
-            <b-button type='is-light' outlined v-on:click='toggleModal'>Log In</b-button>
+            <button class='button is-outlined is-light' v-on:click='toggleModal'>Log In</button>
             <b-modal :active.sync='modalShown' has-modal-card trap-focus aria-modal>
                 <div class='modal-card'>
                     <div class="modal-card-body">          
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import LoginForm from './LoginForm.vue'
+import LoginForm from './LoginForm.vue';
 
 export default {
     name: 'login',
