@@ -13,7 +13,7 @@
 							</div>
 							<div class="level-right">
 								<div class="level-item">
-									<router-link class="button is-medium is-dark is-outlined" :to="{ name: 'issue', params: { issue: issue.issueId }}">More</router-link>
+									<router-link class="button is-medium is-outlined" :to="{ name: 'issue', params: { issue: issue.issueId }}">More</router-link>
 								</div>
 							</div>
 						</div>
@@ -25,30 +25,30 @@
 </template>
 
 <script>
-import gql from 'graphql-tag';
+	import gql from 'graphql-tag';
 
-export default {
-  name: 'home',
-  data () {
-    return {
-      all: ""
-    }
-  },
+	export default {
+	name: 'home',
+	data () {
+		return {
+		all: ""
+		}
+	},
 
-  mounted () {
-    this.$apollo.query({
-      query: gql`query ($identifier: String) {
-        all: getIssues(identifier: $identifier) {
-          issueId
-          question
-          summary
-        }
-      }`,
-      variables: {
-        identifier: this.$store.state.user.identifier
-      }
-    }).then( res => this.all = res.data.all )    
-  }
+	mounted () {
+		this.$apollo.query({
+		query: gql`query ($identifier: String) {
+			all: getIssues(identifier: $identifier) {
+			issueId
+			question
+			summary
+			}
+		}`,
+		variables: {
+			identifier: this.$store.state.user.identifier
+		}
+		}).then( res => this.all = res.data.all )    
+	}
 }
 </script>
 

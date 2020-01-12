@@ -67,13 +67,13 @@ export default {
                     state: this.formData.state,
                     surname: this.formData.surname,
                 }  
-            }).then((res) => {
+            }).then( ( res ) => {
                 this.$store.commit('updateUser', {
                     identifier: res.data.checkIdentity.identifier,
                     surname: this.formData.surname,
                     alreadyVoted: res.data.checkIdentity.alreadyVoted
                 });
-                this.$emit('loginSubmit', {
+                this.$emit( 'loginSubmit', {
                     ...this.formData,
                     alreadyVoted: res.data.checkIdentity.alreadyVoted
                     });
