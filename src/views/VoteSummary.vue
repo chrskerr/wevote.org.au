@@ -1,5 +1,5 @@
 <template>
-    <div id="summary">
+    <div id="voteSummary">
         <div class="section">
             <p class="title">Votes Summary</p>
         </div>
@@ -7,10 +7,10 @@
 </template>
 
 <script>
-import ApexCharts from 'apexcharts'
+// import ApexCharts from 'apexcharts'
 
 export default {
-    name: "summary",
+    name: "voteSummary",
 }
 </script>
 

@@ -21,9 +21,9 @@ const routes = [
     component: () => import('../views/ChainView.vue')
   },
   {
-    path: '/summary',
-    name: 'summary',
-    component: () => import('../views/Summary.vue')
+    path: '/votesummary',
+    name: 'voteSummary',
+    component: () => import('../views/VoteSummary.vue')
   },
   {
     path: '/:issue/vote',

@@ -3,7 +3,7 @@
 		<div class="section">
 			<div class='tile is-ancestor'>
 				<div class="tile is-vertical is-parent is-12">
-					<div class="tile is-child notification is-twitter" v-for='issue in all' v-bind:key='issue.issueId'>
+					<div class="tile is-child notification is-white-bis" v-for='issue in all' v-bind:key='issue.issueId'>
 						<div class="level">
 							<div class="level-left">
 								<div class="container">

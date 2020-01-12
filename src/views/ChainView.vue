@@ -65,8 +65,6 @@
 </template>
 
 <script>
-// how will I show the SQL transations? One table for each table?
-// how will I send the data, an array of objects, with nested v-for statements?
 import axios from 'axios';
 
 export default {

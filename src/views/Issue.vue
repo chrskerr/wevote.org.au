@@ -5,7 +5,7 @@
 			<div class="tile is-ancestor">
 				<div class="tile is-vertical">				
 					<div class="tile is-parent">
-						<div class='tile is-child notification is-twitter'>
+						<div class='tile is-child notification is-light'>
 							<h3 class='title'>{{ issue.question }}</h3>
 							<p> {{ issue.description }} </p>
 						</div>

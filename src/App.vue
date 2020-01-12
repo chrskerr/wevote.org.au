@@ -1,81 +1,29 @@
 <template>
 	<div id="app">
-    
-		<div class='level has-background-primary'>	
-			<div class="level-left">
-				<div class="level-item">
-					<h1 id='app-name' class='title has-text-white'>WeVote</h1>
-				</div>
-
-				<div class="level-item">
-					<router-link to="/" class='has-text-white'>
-						Home
-					</router-link>
-					<router-link class="has-text-white" to='/whitepaper'>
-						Whitepaper
-					</router-link>
-					<router-link class="has-text-white" to='/summary'>
-						Votes Summary
-					</router-link>
-					<router-link class="has-text-white" to='/chainview'>
-						Blockchain View
-					</router-link>
-				</div>
-			</div>
-
-			<div class="level-right">
-				<div class="level-item">
-					<button class='button is-outlined is-light'>Subscribe</button>
-				</div>
-				<div class="level-item">
-					<login />
-				</div>
-			</div>
-		</div>
+		
+		<navBar />
 
 		<router-view />
+		
 	</div>
 </template>
 
 <script>
-import Login from './components/Login.vue';
+import NavBar from './components/Nav.vue';
 
 export default {
-  name: 'app',
-    components: {
-    'login': Login
-  },
+	name: 'app',
+	components: {
+		'navBar': NavBar,
+	},
 }
 </script>
 
-<style scoped>
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
-
-#app-name {
-	font-family: 'Montserrat', cursive;
+<style>
+#app {
+    min-height: 100vh;
 }
 
-.level-item {
-	margin: 0.5em;
-}
-
-a.has-text-white {
-	padding: 0.75em;
-}
-
-a.has-text-white:hover {
-	background-color: rgba(255,255,255,0.25);
-}
-
-a.router-link-exact-active {
-	text-decoration: underline;
-}
-
-@media only screen and (max-width: 768px) {
-	.level {
-		padding-bottom: 0.5em;
-	}
-}
 </style>
 
 <style lang="scss">
@@ -90,7 +38,7 @@ $twitter-invert: findColorInvert($twitter);
 $info: #2E9960;
 $info-invert: findColorInvert($info);
 
-
+$desktop: 800px;
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (

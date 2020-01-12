@@ -2,11 +2,11 @@
     <div id="login">
         <div v-if='user.surname'>
             <p class='has-text-white is-inline-block' style="padding: 0 1em">{{user.surname}}</p>
-            <button class='button is-outlined is-light' v-on:click='logOut'>Log Out</button>
+            <a href='#' v-on:click='logOut'>Log Out</a>
         </div>
 
         <div v-else> 
-            <button class='button is-outlined is-light' v-on:click='toggleModal'>Log In</button>
+            <a href='#' v-on:click='toggleModal'>Log In</a>
             <b-modal :active.sync='modalShown' has-modal-card trap-focus aria-modal>
                 <div class='modal-card'>
                     <div class="modal-card-body">          
@@ -31,7 +31,8 @@ export default {
         }
     },
     methods: {
-        toggleModal: function() {
+        toggleModal: function(e) {
+            e.preventDefault();
             this.modalShown = !this.modalShown;
         },
         loginSubmit: function(data) {
@@ -39,7 +40,8 @@ export default {
                 this.modalShown = false;
             }
         },
-        logOut: function() {            
+        logOut: function(e) {   
+            e.preventDefault();         
             this.$store.commit('updateUser', "")
         }
     },
@@ -62,4 +64,15 @@ export default {
         margin-top: 0.5em;
         font-style: italic;
     }
+
+    a {
+        margin-right: 1em;
+    }
+
+    @media only screen and (max-width: 768px) {
+	a {
+		margin: inherit;
+	}
+    
+}
 </style>
