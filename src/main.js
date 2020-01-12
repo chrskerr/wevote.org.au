@@ -3,11 +3,11 @@ import Vuex from 'vuex'
 import App from './App.vue';
 import router from './router';
 import { createProvider } from './vue-apollo';
-import Buefy from 'buefy';
 
-Vue.use(Buefy, {
-  defaultIconPack: 'fas'
-});
+import { Modal, Navbar } from 'buefy'
+Vue.use(Modal)
+Vue.use(Navbar)
+
 Vue.use(Vuex);
 Vue.config.productionTip = false;
 
