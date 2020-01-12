@@ -24,6 +24,11 @@ export default {
     min-height: 100vh;
 }
 
+@media only screen and (max-width: 800px) {
+	.section {
+        padding-top: 0rem !important;
+    }
+}
 </style>
 
 <style lang="scss">

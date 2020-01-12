@@ -69,7 +69,7 @@ export default {
         margin-right: 1em;
     }
 
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 800px) {
 	a {
 		margin: inherit;
 	}
