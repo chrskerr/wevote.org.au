@@ -3,7 +3,7 @@
 		<div class="section">
 			<div class='tile is-ancestor'>
 				<div class="tile is-vertical is-parent is-12">
-					<div class="tile is-child notification is-white-bis" v-for='issue in all' v-bind:key='issue.issueId'>
+					<div class="tile is-child notification is-white-bis" v-for='issue in issues' v-bind:key='issue.issueId'>
 						<div class="level">
 							<div class="level-left">
 								<div class="container">
@@ -25,30 +25,20 @@
 </template>
 
 <script>
-	import gql from 'graphql-tag';
+	import getIssues from '../apollo/getIssues.gql';
 
 	export default {
 	name: 'home',
-	data () {
-		return {
-		all: ""
-		}
-	},
-
-	mounted () {
-		this.$apollo.query({
-		query: gql`query ($identifier: String) {
-			all: getIssues(identifier: $identifier) {
-			issueId
-			question
-			summary
+	apollo: {
+		issues: {
+			query: getIssues,
+			variables () {
+				return {
+					identifier: this.$store.state.user.identifier,
+				}
 			}
-		}`,
-		variables: {
-			identifier: this.$store.state.user.identifier
-		}
-		}).then( res => this.all = res.data.all )    
-	}
+		}    
+	},
 }
 </script>
 

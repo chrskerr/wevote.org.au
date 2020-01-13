@@ -1,0 +1,6 @@
+query recordVote ($issueId: Int!, $response: String!, $licence: String!, $state: String!, $surname: String!) {
+    recordVote (issueId: $issueId, response: $response, licence: $licence, state: $state, surname: $surname) {
+        message
+        error
+    }
+}

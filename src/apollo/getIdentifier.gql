@@ -1,0 +1,6 @@
+query getIdentifier ($licence: String!, $state: String!, $surname: String!) {
+    identifier: checkIdentity (licence: $licence, state: $state, surname: $surname) {
+        identifier
+        alreadyVoted
+    }
+}

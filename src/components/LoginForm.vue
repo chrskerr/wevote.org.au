@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import gql from 'graphql-tag';
+import getIdentifier from '../apollo/getIdentifier.gql';
 
 export default {
     name: 'login-form',
@@ -54,29 +54,20 @@ export default {
     methods: {
         loginSubmit: function() {
             this.$apollo.query({
-                query: gql`
-                    query Identifiers($licence: String!, $state: String!, $surname: String!) {
-                        checkIdentity(licence: $licence, state: $state, surname: $surname) {
-                            identifier
-                            alreadyVoted
-                        }
-                    }
-                `,
+                query: getIdentifier,
                 variables: {
-                    licence: this.formData.licence,
-                    state: this.formData.state,
-                    surname: this.formData.surname,
+                    ...this.formData
                 }  
-            }).then( ( res ) => {
+            }).then( ({ data: { identifier: res } }) => {
                 this.$store.commit('updateUser', {
-                    identifier: res.data.checkIdentity.identifier,
+                    identifier: res.identifier,
                     surname: this.formData.surname,
-                    alreadyVoted: res.data.checkIdentity.alreadyVoted
+                    alreadyVoted: res.alreadyVoted
                 });
                 this.$emit( 'loginSubmit', {
                     ...this.formData,
-                    alreadyVoted: res.data.checkIdentity.alreadyVoted
-                    });
+                    alreadyVoted: res.alreadyVoted
+                });
             });
         }
     }

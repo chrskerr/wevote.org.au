@@ -95,21 +95,16 @@
 </template>
 
 <script>
-export default {
-  name: 'whitepaper',
-  computed: {
-    identifier () {
-      return this.$store.state.identifier
-    }
-  }
-}
+	export default {
+	name: 'whitepaper',
+	}
 </script>
 
 <style scoped>
-  p {
-    margin-bottom: 1em;
-  }
-  li {
-    margin-left: 1em;
-  }
+	p {
+		margin-bottom: 1em;
+	}
+	li {
+		margin-left: 1em;
+	}
 </style>

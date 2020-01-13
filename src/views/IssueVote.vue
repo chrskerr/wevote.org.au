@@ -36,13 +36,13 @@
 
 <script>
 import LoginForm from '../components/LoginForm.vue';
-import gql from 'graphql-tag';
+import getIssue from '../apollo/getIssue.gql';
+import recordVote from '../apollo/recordVote.gql';
 
 export default {
     name: 'issue-vote',
     data () {
         return {
-            issue: '',
             identified: false,
             response: '',
             err: '',
@@ -50,64 +50,56 @@ export default {
         }
     },
     methods: {
-        loginSubmit: function(data) {
+        loginSubmit: function( data ) {
             this.data = data;
-            if (data.alreadyVoted.includes(this.$route.params.issue)) {
+            if ( data.alreadyVoted.includes( this.$route.params.issue ) ) {
                 this.err = "You've already voted"
             } else {
                 this.identified = true;
             }
         },
-        chooseVote: function(e) {
+
+        chooseVote: function( e ) {
             this.response = e.target.name;
         },
-        confirmVote: function(e) {
+
+        confirmVote: function( e ) {
             if ( e.target.name === 'change' ) {
                 this.response = '';
-            } else if ( e.target.name === 'confirm' ) {
+
+            } else if ( e.target.name === 'confirm' ) {   
                 this.$apollo.query({
-                    query: gql` 
-                        query recordVote($issueId: Int!, $response: String!, $licence: String!, $state: String!, $surname: String!) {
-                            recordVote(issueId: $issueId, response: $response, licence: $licence, state: $state, surname: $surname) {
-                                message
-                                error
-                            }
-                        }   
-                    `,
+                    query: recordVote,
                     variables: {
-                        issueId: parseInt(this.$route.params.issue),
+                        issueId: this.$route.params.issue,
                         response: this.response,
                         licence: this.data.licence,
                         state: this.data.state,
                         surname: this.data.surname
                     }
-                }).then((res) => {
-                    if (res.data.recordVote.error) {
-                        this.err = res.data.recordVote.error
+                }).then(( { data: { recordVote }} ) => {
+                    if ( recordVote.error ) {
+                        this.err = recordVote.error
                     } else {
-                        this.$router.push('/')
+                        this.$router.push( '/' )
                     }
                 })
             }
-        }
+        },
     },
     components: {
         'login-form': LoginForm
     },
-    mounted () {
-        this.$apollo.query({
-            query: gql`
-                query get($issueId: String!) {
-                    getIssue(issueId: $issueId) {
-                        question
-                    }
+    apollo: {
+        issue: {
+            query: getIssue,
+            variables () {
+                return {
+                    issueId: this.$route.params.issue
                 }
-            `,
-            variables: {
-                issueId: this.$route.params.issue
-            }
-        }).then( res => this.issue = res.data.getIssue )
-    }
+            },
+        },
+    },
 }
 </script>
 

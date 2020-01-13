@@ -39,35 +39,21 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
+	import getIssue from '../apollo/getIssue.gql';
 
-export default {
-  name: 'issue',
-  data () {
-    return {
-      issue: ''
-    }
-  },
-  mounted () {
-    this.$apollo.query({
-      query: gql`
-        query get($issueId: Int!) {
-          issue: getIssue(issueId: $issueId) {
-            issueId
-            question
-            description
-            caseFor
-            caseAgainst
-            closeDate
-          }
-        }
-      `,
-      variables: {
-        issueId: parseInt(this.$route.params.issue)
-      }
-    }).then( res => this.issue = res.data.issue )
-  }
-}
+	export default {
+		name: 'issue',
+		apollo: {
+			issue: {
+				query: getIssue,
+				variables () {
+					return {
+						issueId: this.$route.params.issue
+					}
+				},
+			},
+		},
+	}
 </script>
 
 <style scoped>

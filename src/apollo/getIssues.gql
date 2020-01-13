@@ -1,0 +1,8 @@
+
+query getIssues ($identifier: String) {
+	issues: getIssues (identifier: $identifier) {
+		issueId
+		question
+		summary
+	}
+}

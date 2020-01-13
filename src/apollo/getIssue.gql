@@ -1,0 +1,11 @@
+
+query getIssue ($issueId: Int!) {
+    issue: getIssue(issueId: $issueId) {
+		issueId
+		question
+		description
+		caseFor
+		caseAgainst
+		closeDate
+	}
+}
