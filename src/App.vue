@@ -16,8 +16,8 @@
         components: {
             'navBar': NavBar,
         },
-        mounted () {
-            this.$router.push({ path: 'whitepaper' }) // redirect to whitepaper on first-load only
+        created () {
+        //    this.$router.push({ path: 'whitepaper' }) // redirect to whitepaper on first-load only
         },
     }
 </script>
