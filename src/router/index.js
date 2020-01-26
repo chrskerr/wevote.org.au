@@ -21,11 +21,6 @@ const routes = [
     component: () => import('../views/ChainView.vue')
   },
   {
-    path: '/votesummary',
-    name: 'voteSummary',
-    component: () => import('../views/VoteSummary.vue')
-  },
-  {
     path: '/:issue/vote',
     name: 'issue-vote',
     component: () => import('../views/IssueVote.vue')

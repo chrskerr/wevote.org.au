@@ -15,9 +15,6 @@
                 <b-navbar-item tag='router-link' to='/whitepaper'>
                     Whitepaper
                 </b-navbar-item>
-                <b-navbar-item tag='router-link' to='/votesummary'>
-                    Votes Summary
-                </b-navbar-item>
                 <b-navbar-item tag='router-link' to='/chainview'>
                     Blockchain View
                 </b-navbar-item>
