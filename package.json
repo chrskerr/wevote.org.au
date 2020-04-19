@@ -1,10 +1,13 @@
 {
   "name": "wevote.org.au",
+  "homepage": "www.wevote.org.au",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "predeploy": "vue-cli-service build",
+    "deploy": "gh-pages -d dist",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -28,6 +31,7 @@
     "babel-eslint": "^10.0.3",
     "eslint": "^6.8.0",
     "eslint-plugin-vue": "^6.1.2",
+    "gh-pages": "^2.2.0",
     "graphql-tag": "^2.10.1",
     "sass": "^1.24.4",
     "sass-loader": "^8.0.1",
