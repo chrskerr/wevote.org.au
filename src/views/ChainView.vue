@@ -76,7 +76,7 @@ export default {
     },
     methods: {
         refresh () {
-            axios.get("https://api.chrskerr.com/referendums/analytics")
+            axios.get("https://wevote-server.herokuapp.com/referendums/analytics")
             .then( res => { this.data = res.data });
         } 
     },
