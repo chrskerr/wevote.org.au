@@ -4,7 +4,8 @@ import { createApolloClient } from 'vue-cli-plugin-apollo/graphql-client';
 
 Vue.use( VueApollo );
 
-const httpEndpoint = 'https://api.chrskerr.com/referendums/graphql';
+// const httpEndpoint = 'https://api.chrskerr.com/referendums/graphql';
+const httpEndpoint = 'https://wevote-server.herokuapp.com/referendums/graphql';
 
 export function createProvider ( options = {} ) {
 
