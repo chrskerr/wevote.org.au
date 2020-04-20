@@ -1,6 +1,6 @@
 {
   "name": "wevote.org.au",
-  "homepage": "www.wevote.org.au",
+  "homepage": "https://www.wevote.org.au",
   "version": "0.1.0",
   "private": true,
   "scripts": {
